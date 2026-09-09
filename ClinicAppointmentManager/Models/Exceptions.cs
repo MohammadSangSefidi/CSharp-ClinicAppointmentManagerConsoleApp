@@ -34,3 +34,17 @@ public class InvalidDateTimesException: Exception
     {
     }
 }
+
+public class InvalidStatusException: Exception
+{
+    public InvalidStatusException(string message): base(message)
+    {
+    }
+}
+
+public class InvalidDateException: Exception
+{
+    public InvalidDateException(string message): base(message)
+    {
+    }
+}
