@@ -48,3 +48,11 @@ public class InvalidDateException: Exception
     {
     }
 }
+
+public class InvalidDoctorSpecialization: Exception
+{
+    public InvalidDoctorSpecialization(string message): base(message)
+    {
+        
+    }
+}

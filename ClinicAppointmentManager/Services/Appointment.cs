@@ -100,18 +100,7 @@ public class AppointmentService(AppointmentRepository appointmentRepository, Use
     // public static void ShowAppointmentInConsol(Appointment appointment)
     // {
     //     Console.WriteLine("==========");
-    //     Console.WriteLine($"Id : {appointment.Id}");
-    //     Console.WriteLine($"Date : {appointment.Date}");
-    //     Console.WriteLine($"StartTime : {appointment.StartTime}");
-    //     Console.WriteLine($"EndTime : {appointment.EndTime}");
-    //     Console.WriteLine($"Status : {appointment.Status}");
-    //     Console.WriteLine($"Patient===>");
-    //     UserService.ShowPatientInConsol(appointment.Patient);
-    //     Console.WriteLine($"=====>");
-    //     Console.WriteLine($"AssignedDoctor===>");
-    //     UserService.ShowDoctorInConsol(appointment.AssignedDoctor);
-    //     Console.WriteLine($"=====>");
-    //     Console.WriteLine($"Description : {appointment.Description}");
+
         
     //     Console.WriteLine("==========");
     // }

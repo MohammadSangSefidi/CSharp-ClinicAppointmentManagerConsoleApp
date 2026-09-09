@@ -12,36 +12,36 @@ public class UserRepository
     public int LastId {get; private set;} = 1000;
     private Dictionary<int, User> UserDict = [];
 
-    public List<User> GetAll(UserTypes? userType)
+    public List<Doctor> GetAllDoctors()
+    {   
+        List<Doctor> list = [];
+        foreach (User user in UserDict.Values.ToList())
+            {
+                if (user is Doctor doctor)
+                {
+                    list.Add(doctor);
+                }
+            }
+            return list;
+    }
+
+    public List<Patient> GetAllPatiens()
+    {   
+        List<Patient> list = [];
+        foreach (User user in UserDict.Values.ToList())
+            {
+                if (user is Patient patient)
+                {
+                    list.Add(patient);
+                }
+            }
+            return list;
+    }
+
+    public List<User> GetAll()
     {
-        List<User> list = [];
-        if (userType == UserTypes.Doctor)
-        {
-            foreach (User user in UserDict.Values.ToList())
-            {
-                if (user is Doctor)
-                {
-                    list.Add(user);
-                }
-            }
-            return list;
-        }
-        else if (userType == UserTypes.Patient)
-        {
-            foreach (User user in UserDict.Values.ToList())
-            {
-                if (user is Patient)
-                {
-                    list.Add(user);
-                }
-            }
-            return list;
-        }
-        else
-        {
-            list = UserDict.Values.ToList();
-            return list;
-        }
+        return UserDict.Values.ToList();
+        
     }
 
     public Doctor? GetDoctorById(int id)

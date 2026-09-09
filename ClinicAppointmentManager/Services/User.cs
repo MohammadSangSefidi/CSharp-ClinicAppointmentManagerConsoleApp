@@ -8,25 +8,25 @@ public class UserService(UserRepository userRepository)
 {
     private readonly UserRepository _userRepository = userRepository;
 
-    public List<User> GetDoctorsList()
+    public List<Doctor> GetDoctorsList()
     {
-        return _userRepository.GetAll(UserTypes.Doctor);
+        return _userRepository.GetAllDoctors();
     }
 
-    public List<User> GetPatientsList()
+    public List<Patient> GetPatientsList()
     {
-        return _userRepository.GetAll(UserTypes.Patient);
+        return _userRepository.GetAllPatiens();
     }
 
-    public User GetDoctorById(int id)
+    public Doctor GetDoctorById(int id)
     {
-        User user = _userRepository.GetDoctorById(id) ?? throw new InvalidIdException("Invalid Doctor Id.");
+        Doctor user = _userRepository.GetDoctorById(id) ?? throw new InvalidIdException("Invalid Doctor Id.");
         return user; 
     }
 
-    public User GetPatientById(int id)
+    public Patient GetPatientById(int id)
     {
-        User user = _userRepository.GetPatientById(id) ?? throw new InvalidIdException("Invalid Patient Id.");
+        Patient user = _userRepository.GetPatientById(id) ?? throw new InvalidIdException("Invalid Patient Id.");
         return user; 
     }
 
@@ -41,11 +41,20 @@ public class UserService(UserRepository userRepository)
         }
     }
 
-    public void CreateDoctor(string firstName, string lastName, string phoneNumber, DoctorSpecialization specialization)
+    public void CreateDoctor(string firstName, string lastName, string phoneNumber, string specialization)
     {
         CheckPhoneNumber(phoneNumber);
-        Doctor newDoctor = new Doctor(firstName, lastName, phoneNumber, specialization);
-        _userRepository.Add(newDoctor);
+
+        if (Enum.TryParse<DoctorSpecialization>(specialization, true, out DoctorSpecialization doctorSpecialization))
+        {
+            Doctor newDoctor = new Doctor(firstName, lastName, phoneNumber, doctorSpecialization);
+            _userRepository.Add(newDoctor);
+        }
+        else
+        {
+            throw new InvalidDoctorSpecialization("Invalid Doctor Specialization.");
+        }
+        
     }
 
     public void CreatePatient(string firstName, string lastName, string phoneNumber, DateOnly dateOfBirth)
@@ -63,16 +72,9 @@ public class UserService(UserRepository userRepository)
 
     // public static void ShowDoctorInConsol(Doctor doctor)
     // {
-    //     Console.WriteLine($"First Name: {doctor.FirstName}");
-    //     Console.WriteLine($"Last Name: {doctor.LastName}");
-    //     Console.WriteLine($"Phone Number: {doctor.PhoneNumber}");
-    //     Console.WriteLine($"Specialization: {doctor.Specialization}");
     // }
     // public static void ShowPatientInConsol(Patient patient)
     // {
-    //     Console.WriteLine($"First Name: {patient.FirstName}");
-    //     Console.WriteLine($"Last Name: {patient.LastName}");
-    //     Console.WriteLine($"Phone Number: {patient.PhoneNumber}");
-    //     Console.WriteLine($"Date Of Birth: {patient.DateOfBirth}");
+
     // }
 }
