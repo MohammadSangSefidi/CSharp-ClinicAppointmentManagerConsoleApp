@@ -57,7 +57,7 @@ while (isRunning)
                         foreach (Doctor d in doctorsList)
                         {
                             Console.WriteLine("==========");
-                            ShowDoctorsInConsol(d);
+                            ShowDoctorsInConsole(d);
                             Console.WriteLine("==========");           
                         }
                         break;
@@ -75,7 +75,7 @@ while (isRunning)
                         try{
                             Doctor doctor = userService.GetDoctorById(int.Parse(id));
                             Console.WriteLine("==========");
-                            ShowDoctorsInConsol(doctor);
+                            ShowDoctorsInConsole(doctor);
                             Console.WriteLine("==========");  
                         }
                         catch (InvalidIdException ex)
@@ -150,7 +150,7 @@ while (isRunning)
                         foreach (Patient p in patientsList)
                         {
                             Console.WriteLine("==========");
-                            ShowPatientInConsol(p);
+                            ShowPatientInConsole(p);
                             Console.WriteLine("==========");           
                         }
                         break;
@@ -168,7 +168,7 @@ while (isRunning)
                         try{
                             Patient patient = userService.GetPatientById(int.Parse(id));
                             Console.WriteLine("==========");
-                            ShowPatientInConsol(patient);
+                            ShowPatientInConsole(patient);
                             Console.WriteLine("==========");  
                         }
                         catch (InvalidIdException ex)
@@ -241,7 +241,7 @@ while (isRunning)
                         foreach (Appointment a in appointmentsList)
                         {
                             Console.WriteLine("==========");
-                            ShowAppointmentInConsol(a);
+                            ShowAppointmentInConsole(a);
                             Console.WriteLine("==========");           
                         }
                         break;
@@ -259,7 +259,7 @@ while (isRunning)
                         try{
                             Appointment appointment = appointmentService.GetAppointmentById(int.Parse(id));
                             Console.WriteLine("==========");
-                            ShowAppointmentInConsol(appointment);
+                            ShowAppointmentInConsole(appointment);
                             Console.WriteLine("==========");  
                         }
                         catch (InvalidIdException ex)
@@ -313,7 +313,7 @@ while (isRunning)
                         try{
                             appointmentService.CreateAppointment(DateOnly.Parse(date), TimeOnly.Parse(startTime),
                                 TimeOnly.Parse(endTime), int.Parse(doctorId), int.Parse(patientId), description);
-                            Console.WriteLine("Patient Created Successfully!");
+                            Console.WriteLine("Appointment Created Successfully!");
                         }
                         catch (InvalidDateTimesException ex)
                         {
@@ -396,7 +396,7 @@ while (isRunning)
     }
 }
 
-void ShowDoctorsInConsol(Doctor doctor)
+void ShowDoctorsInConsole(Doctor doctor)
 {
     Console.WriteLine($"Id: {doctor.Id}");
     Console.WriteLine($"First Name: {doctor.FirstName}");
@@ -405,7 +405,7 @@ void ShowDoctorsInConsol(Doctor doctor)
     Console.WriteLine($"Specialization: {doctor.Specialization}");
 }
 
-void ShowPatientInConsol(Patient patient)
+void ShowPatientInConsole(Patient patient)
 {
     Console.WriteLine($"Id: {patient.Id}");
     Console.WriteLine($"First Name: {patient.FirstName}");
@@ -414,7 +414,7 @@ void ShowPatientInConsol(Patient patient)
     Console.WriteLine($"Date Of Birth: {patient.DateOfBirth}");
 }
 
-void ShowAppointmentInConsol(Appointment appointment)
+void ShowAppointmentInConsole(Appointment appointment)
 {
     Console.WriteLine($"Id : {appointment.Id}");
     Console.WriteLine($"Date : {appointment.Date}");
@@ -422,10 +422,10 @@ void ShowAppointmentInConsol(Appointment appointment)
     Console.WriteLine($"EndTime : {appointment.EndTime}");
     Console.WriteLine($"Status : {appointment.Status}");
     Console.WriteLine($"Patient===>");
-    ShowPatientInConsol(appointment.Patient);
+    ShowPatientInConsole(appointment.Patient);
     Console.WriteLine($"=====>");
     Console.WriteLine($"AssignedDoctor===>");
-    ShowDoctorsInConsol(appointment.AssignedDoctor);
+    ShowDoctorsInConsole(appointment.AssignedDoctor);
     Console.WriteLine($"=====>");
     Console.WriteLine($"Description : {appointment.Description}");
 }
